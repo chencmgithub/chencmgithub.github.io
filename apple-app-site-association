@@ -2,7 +2,7 @@
     "applinks": {
         "apps": [],
         "details": [{
-            "appID": "",
+            "appID": "com.glyh.mbank.dev",
             "paths": ["*"]
             }]
     }
