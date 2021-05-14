@@ -4,6 +4,9 @@
         "details": [{
             "appID": "J483WL5R6J.com.glyh.mbank.sit",
             "paths": ["*"]
+            },{
+            "appID": "S727LB364N.com.yusys.GWBank",
+            "paths": ["gwbank/*", "gwbank/app/*"]
             }]
     }
 }
