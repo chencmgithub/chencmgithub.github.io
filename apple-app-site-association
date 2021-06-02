@@ -7,6 +7,9 @@
             },{
             "appID": "S727LB364N.com.yusys.GWBank",
             "paths": ["gwbank/*", "gwbank/app/*"]
+            },{
+            "appID":"8JE868KPZJ.cn.com.gwbank",
+            "paths": ["*"]
             }]
     }
 }
