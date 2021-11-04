@@ -10,6 +10,9 @@
             },{
             "appID":"8JE868KPZJ.cn.com.gwbank",
             "paths": ["*"]
+            },{
+            "appID":"8JE86KPZJ.com.dyccb.iphone",
+            "paths": ["*"]
             }]
     }
 }
