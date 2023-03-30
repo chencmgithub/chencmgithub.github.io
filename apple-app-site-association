@@ -13,6 +13,9 @@
             },{
             "appID":"8JE868KPZJ.com.dyccb.iphone",
             "paths": ["*"]
+            },{
+            "appID":"2PC8J9MPF4.com.yusys.mbank.ncb",
+            "paths": ["*"]
             }]
     }
 }
