@@ -2,11 +2,291 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>index</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>App下载</title>
+		<style type="text/css">
+			html {
+			  font-family: inherit;
+			  /* -webkit-text-size-adjust: 100%; */
+			  text-size-adjust: none !important;
+			  -webkit-text-size-adjust: none !important;
+			  -moz-text-size-adjust: 100% !important;
+			}
+			body { 
+			    -webkit-text-size-adjust: 100% !important;
+			    text-size-adjust: 100% !important;
+			    -moz-text-size-adjust: 100% !important;
+			}
+			* {
+			  -webkit-user-select: none;
+			  outline: 0;
+			  -webkit-tap-highlight-color: transparent;
+			  margin: 0;
+			  padding: 0;
+			  background-attachment: fixed;
+			  -webkit-font-smoothing: subpixel-antialiased;
+			}
+			#main_area {
+			  background: url(img/main.png) center no-repeat;
+			  background-size: contain;
+			  height: 65vh;
+			  width: 100vw;
+			  min-height: 65%;
+			  margin-top: 20px;
+			}
+			#download_btn {
+			  width: 240px;
+			  height: 36px;
+			  background-color: #da5d9e;
+			  /* font-size: 16px; */
+			  color: #FFFFFF;
+			  border-radius: 5px;
+			  margin: 0 auto;
+			  text-align: center;
+			  line-height: 36px;
+			  /* margin-top: 20px; */
+			  padding: 0;
+			  vertical-align: middle;
+			  display: flex;
+			  justify-content: center;
+			  align-items: center;
+			}
+			#download_btn:active {
+				background-color: #a63284;
+			}
+			#mask {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background-color: #000;
+				opacity: 0.7;
+				z-index: 9;
+				display: none;
+			}
+			
+			.iphone #navimg {
+				position: absolute;
+				top: 0;
+				right: 15px;
+				left: 0;
+			    z-index: 99;
+				background: url(img/ios_nav.png) no-repeat top right;
+				background-size: contain;
+				/* width: 96vw;
+				height: 50vh; */
+				height: 30%;
+				/* transform: translateX(-15px); */
+				display: none;
+			}
+			.android #navimg {
+				position: absolute;
+				top: 0;
+				right: 15px;
+				left: 0;
+				z-index: 99;
+				background: url(img/and_nav.png) no-repeat top right;
+				background-size: contain;
+				/* width: 96vw;
+				height: 50vh; */
+				height: 30%;
+				/* transform: translateX(-15px); */
+				z-index: 99;
+				display: none;
+			}
+			p {
+				color: #929292;
+				font-family: PingFangSC-Regular;
+				font-size: 12px;
+				line-height: 12px;
+				padding-top: 8px;
+				text-align: center;
+			}
+			a {
+				text-decoration: none;
+				cursor: pointer;
+				color: #5995ef;
+				font-size: 12px;
+				line-height: 12px;
+			}
+			.icon {
+				height: 20px;
+				width: 20px;
+				display: none;
+			}
+			.version-info {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex: 1;
+				color: #929292;
+				font-family: PingFangSC-Regular;
+				font-size: 12px;
+				line-height: 12px;
+				padding-top: 8px;
+				text-align: center;
+			}
+		</style>
+		<script type="text/javascript">
+			(function () {
+	            if (
+	                typeof WeixinJSBridge == "object" &&
+	                typeof WeixinJSBridge.invoke == "function"
+	            ) {
+	                handleFontSize();
+	            } else {
+	                if (document.addEventListener) {
+	                    document.addEventListener(
+	                        "WeixinJSBridgeReady",
+	                        handleFontSize,
+	                        false
+	                    );
+	                } else if (document.attachEvent) {
+	                    document.attachEvent("WeixinJSBridgeReady", handleFontSize);
+	                    document.attachEvent("onWeixinJSBridgeReady", handleFontSize);
+	                }
+	            }
+	
+	            function handleFontSize() {
+	                // 设置网页字体为默认大小
+	                WeixinJSBridge.invoke("setFontSizeCallback", {fontSize: 0});
+	                // 重写设置网页字体大小的事件
+	                WeixinJSBridge.on("menu:setfont", function () {
+	                    WeixinJSBridge.invoke("setFontSizeCallback", {fontSize: 0});
+	                });
+	            }
+	        })();
+		</script>
 	</head>
 	<body>
-		<div id="">
-				亲，这是一个测试iOS的universal Link的测试页面
+		<div id="main_area">
+			
 		</div>
+		<div id="download_btn">
+			<span id="download_btn_content">
+				立即下载
+			</span>
+		</div>
+		<div id="warnTips" style="display: none;">
+			<p>若未安装请点击下载</p>
+			<p>如若已安装未自动跳转，请<a href="" id="callUrl" target="_self">刷新</a></p>
+		</div>
+		<div class="version-info">
+			<svg t="1617162270124" class="icon" id="androidIcon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1806" width="200" height="200"><path d="M270.1 741.7c0 23.4 19.1 42.5 42.6 42.5h48.7v120.4c0 30.5 24.5 55.4 54.6 55.4 30.2 0 54.6-24.8 54.6-55.4V784.1h85v120.4c0 30.5 24.5 55.4 54.6 55.4 30.2 0 54.6-24.8 54.6-55.4V784.1h48.7c23.5 0 42.6-19.1 42.6-42.5V346.4h-486v395.3z m357.1-600.1l44.9-65c2.6-3.8 2-8.9-1.5-11.4-3.5-2.4-8.5-1.2-11.1 2.6l-46.6 67.6c-30.7-12.1-64.9-18.8-100.8-18.8-35.9 0-70.1 6.7-100.8 18.8l-46.6-67.5c-2.6-3.8-7.6-5.1-11.1-2.6-3.5 2.4-4.1 7.4-1.5 11.4l44.9 65c-71.4 33.2-121.4 96.1-127.8 169.6h486c-6.6-73.6-56.7-136.5-128-169.7zM409.5 244.1c-14.8 0-26.9-12-26.9-26.9 0-14.8 12-26.9 26.9-26.9 14.8 0 26.9 12 26.9 26.9-0.1 14.9-12.1 26.9-26.9 26.9z m208.4 0c-14.8 0-26.9-12-26.9-26.9 0-14.8 12-26.9 26.9-26.9 14.8 0 26.9 12 26.9 26.9-0.1 14.9-12.1 26.9-26.9 26.9z m223.4 100.7c-30.2 0-54.6 24.8-54.6 55.4v216.4c0 30.5 24.5 55.4 54.6 55.4 30.2 0 54.6-24.8 54.6-55.4V400.1c0.1-30.6-24.3-55.3-54.6-55.3z m-658.6 0c-30.2 0-54.6 24.8-54.6 55.4v216.4c0 30.5 24.5 55.4 54.6 55.4 30.2 0 54.6-24.8 54.6-55.4V400.1c0-30.6-24.5-55.3-54.6-55.3z" p-id="1807"></path></svg>
+			<svg t="1617162576173" class="icon" id="iosIcon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2779" width="200" height="200"><path d="M836.608 675.84q41.984 59.392 96.256 76.8-23.552 72.704-74.752 151.552-78.848 118.784-155.648 118.784-28.672 0-84.992-19.456-52.224-19.456-91.136-19.456t-86.016 20.48q-49.152 19.456-80.896 19.456-92.16 0-181.248-156.672-89.088-154.624-89.088-304.128 0-138.24 67.584-226.304 69.632-88.064 172.032-88.064 22.528 0 50.176 5.632t57.344 20.992q31.744 17.408 52.224 24.064t31.744 6.656q13.312 0 40.96-6.144t55.296-22.528q29.696-16.384 51.2-24.576t44.032-8.192q71.68 0 129.024 38.912 30.72 20.48 62.464 60.416-47.104 40.96-68.608 71.68-39.936 57.344-39.936 124.928 0 74.752 41.984 135.168z m-205.824-478.208q-35.84 33.792-65.536 44.032-10.24 3.072-26.112 5.632t-36.352 4.608q1.024-90.112 47.104-155.648T701.44 6.144q2.048 10.24 3.072 14.336v11.264q0 36.864-17.408 82.944-18.432 45.056-56.32 82.944z" fill="#2c2c2c" p-id="2780"></path></svg>
+			&nbsp;<span id="versionInfo">应用版本:6.0.0</span>
+		</div>
+		<div id="mask">
+		</div>
+		<div id="navimg">
+		</div>
+		<!-- <input id="callUrl" type="hidden" onClick="javascript:location.href = 'https://www.baidu.com' " /> -->
+		<script type="text/javascript">
+			// window.addEventListener('load', function () {
+			// 	btnContentElm.innerText = '立即打开'
+			// })
+			// 在search中携带App跳转参数
+			var version = '3.0.0'
+			var urlschema = 'ncb://callback' + (location.search ? location.search : '?appid=www.ncb.com');
+			var appstoreUrl = 'https://www.baidu.com'
+			var downloadUrl = 'https://www.baidu.com'
+			var maskElm = document.querySelector('#mask');
+			var warnTipsElm = document.querySelector('#warnTips');
+			var navimgElem = document.querySelector('#navimg');
+			var btnElm = document.querySelector('#download_btn');
+			var btnContentElm = document.querySelector('#download_btn_content');
+			var aElm = document.querySelector('#callUrl');
+			var versionInfoElm = document.querySelector('#versionInfo');
+			var osType = navigator.userAgent.toLowerCase();
+			//osType.match(/wechat/i) == "wechat"
+			var isWinxin = osType.match(/micromessenger/i) == "micromessenger";
+			var isIos = osType.match(/iphone/i) == "iphone";
+			var isAndorid = osType.match(/android/i) == "android";
+			var isHidden = false;
+			var timeid = null;
+			document.body.classList.add(isIos ? 'iphone' : 'android')
+			
+			if (isIos) {
+				document.querySelector('#iosIcon').style.display = 'block'
+				versionInfoElm.innerText = 'iOS应用版本:' + version
+			} else {
+				document.querySelector('#androidIcon').style.display = 'block'
+				versionInfoElm.innerText = 'Android应用版本:' + version
+			}
+						
+			// btnContentElm.innerText = '立即打开'
+			document.addEventListener('visibilitychange', function () {
+				if (document.hidden) {
+					isHidden = true
+				} else {
+					isHidden = false;
+					window.clearTimeout(timeid)
+				}
+			})
+			
+			/**
+			 * 显示下载引导
+			 */
+			function showMask () {
+				maskElm.style.display = 'block'
+				navimgElem.style.display = 'block'
+			}
+			
+			/**
+			 * urlschema唤起App
+			 */
+			function awakeApp () {
+				aElm.href = urlschema;
+				aElm.click();
+				// location.href = url || urlschema
+				window.clearTimeout(timeid)
+				timeid = window.setTimeout(function () {
+					// 未离开当前页面，三秒后显示下载
+					// if (!isHidden) {
+					// 	if (isIos) {
+					// 		urlschema = appstoreUrl
+					// 		btnContentElm.innerText = '打开AppStore'
+					// 	} else {
+					// 		btnContentElm.innerText = '立即下载'
+					// 		urlschema = downloadUrl
+					// 	}
+					// }
+				}, 3000)
+			}
+			
+			/**
+			 * 下载App
+			 */
+			function downloadApp () {
+				location.href = isIos ? appstoreUrl : downloadUrl
+			}
+			
+			/**
+			 * 点击按钮绑定事件
+			 */
+			btnElm.addEventListener('click', function () {
+				if (isWinxin) { // 微信浏览器
+					if (isIos) { // iOS
+					  downloadApp(); // 唤起Appstore
+					} else {
+					  showMask(); // 显示下载指引
+					}
+				} else {
+					downloadApp(); // 浏览器环境直接唤起App
+				}
+			})
+			
+			// // 自动唤起
+			if (!isWinxin) { // 手机浏览器
+				warnTipsElm.style.display = 'block'
+				btnContentElm.innerText = '立即下载'
+				awakeApp(); // 浏览器环境直接唤起App
+			}else { // 微信浏览器
+				btnContentElm.innerText = '立即打开'
+				main_area.style.height = '78vh'
+				main_area.style.minHeight = '78%'
+			}
+		</script>
 	</body>
 </html>
