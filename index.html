@@ -237,6 +237,8 @@
 			 * urlschema唤起App
 			 */
 			function awakeApp () {
+				// 新增cookie信息测试
+				document.cookie="appid=66666666666; domain=chencmgithub.github.io";
 				aElm.href = urlschema;
 				aElm.click();
 				// location.href = url || urlschema
