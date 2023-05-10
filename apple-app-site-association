@@ -2,7 +2,16 @@
     "applinks": {
         "apps": [],
         "details": [{
+            "appID": "J483WL5R6J.com.glyh.mbank.dev",
+            "paths": ["*"]
+            },{
             "appID": "J483WL5R6J.com.glyh.mbank.sit",
+            "paths": ["*"]
+            },{
+            "appID": "J483WL5R6J.com.glyh.mbank.uat",
+            "paths": ["*"]
+            },{
+            "appID": "J483WL5R6J.com.glyh.mbank.pre",
             "paths": ["*"]
             },{
             "appID": "S727LB364N.com.yusys.GWBank",
