@@ -25,6 +25,12 @@
             },{
             "appID":"2PC8J9MPF4.com.yusys.mbank.ncb",
             "paths": ["*"]
+            },{
+            "appID":"S727LB364N.com.yusys.mbank",
+            "paths": ["*"]
+            },{
+            "appID":"S727LB364N.com.yusys.mbank.poc",
+            "paths": ["*"]
             }]
     }
 }
