@@ -188,9 +188,13 @@
 			// })
 			// 在search中携带App跳转参数
 			var version = '3.0.0'
-			var urlschema = 'app://com.yusys.mbank' + (location.search ? location.search : '?appid=www.ncb.com');
-			var appstoreUrl = 'https://www.baidu.com'
-			var downloadUrl = 'https://www.baidu.com'
+			// 海外App， app://com.yusys.mbank.hk
+			// 国内App： app://com.yusys.mbank
+			var urlschema = 'app://com.yusys.mbank.hk' + (location.search ? location.search : '?appid=xxxx');
+			// 蒲公英地址： https://www.pgyer.com/dokAQviq
+			var appstoreUrl = 'https://www.pgyer.com/dokAQviq'
+			// mpaas下载地址： https://mcube.mpaas.accelerate.aliyuncs.com/ALIPUBA6B0198132052-ospoc/1.0.0.7/ANDROID/ncb_poc_china_debug_1.0.0.7.apk
+			var downloadUrl = 'https://mcube.mpaas.accelerate.aliyuncs.com/ALIPUBA6B0198132052-ospoc/1.0.0.8/ANDROID/yusys_poc_china_release_1.0.0.8.apk'
 			var maskElm = document.querySelector('#mask');
 			var warnTipsElm = document.querySelector('#warnTips');
 			var navimgElem = document.querySelector('#navimg');
