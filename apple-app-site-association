@@ -32,7 +32,7 @@
             "appID":"S727LB364N.com.yusys.mbank.poc",
             "paths": ["*"]
             },{
-            "appID":"S727LB364N.com.yusys.mbank.poc.hk",
+            "appID":"S727LB364N.com.yusys.mbank.hk",
             "paths": ["*"]
             }]
     }
