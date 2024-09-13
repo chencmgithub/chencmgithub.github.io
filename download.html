@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>App下载</title>
+		<style type="text/css">
+			html {
+			  font-family: inherit;
+			  /* -webkit-text-size-adjust: 100%; */
+			  text-size-adjust: none !important;
+			  -webkit-text-size-adjust: none !important;
+			  -moz-text-size-adjust: 100% !important;
+			}
+			body { 
+			    -webkit-text-size-adjust: 100% !important;
+			    text-size-adjust: 100% !important;
+			    -moz-text-size-adjust: 100% !important;
+			}
+			* {
+			  -webkit-user-select: none;
+			  outline: 0;
+			  -webkit-tap-highlight-color: transparent;
+			  margin: 0;
+			  padding: 0;
+			  background-attachment: fixed;
+			  -webkit-font-smoothing: subpixel-antialiased;
+			}
+			#main_area {
+			  background: url(main.png) center no-repeat;
+			  background-size: contain;
+			  height: 65vh;
+			  width: 100vw;
+			  min-height: 65%;
+			  margin-top: 20px;
+			}
+			#download_btn {
+			  width: 240px;
+			  height: 36px;
+			  background-color: #5d78da;
+			  /* font-size: 16px; */
+			  color: #FFFFFF;
+			  border-radius: 5px;
+			  margin: 0 auto;
+			  text-align: center;
+			  line-height: 36px;
+			  /* margin-top: 20px; */
+			  padding: 0;
+			  vertical-align: middle;
+			  display: flex;
+			  justify-content: center;
+			  align-items: center;
+			}
+			#download_btn:active {
+				background-color: #ccc;
+			}
+			#mask {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background-color: #000;
+				opacity: 0.7;
+				z-index: 9;
+				display: none;
+			}
+			
+			.iphone #navimg {
+				position: absolute;
+				top: 0;
+				right: 15px;
+				left: 0;
+			    z-index: 99;
+				background: url(ios_nav.png) no-repeat top right;
+				background-size: contain;
+				/* width: 96vw;
+				height: 50vh; */
+				height: 30%;
+				/* transform: translateX(-15px); */
+				display: none;
+			}
+			.android #navimg {
+				position: absolute;
+				top: 0;
+				right: 15px;
+				left: 0;
+				z-index: 99;
+				background: url(and_nav.png) no-repeat top right;
+				background-size: contain;
+				/* width: 96vw;
+				height: 50vh; */
+				height: 30%;
+				/* transform: translateX(-15px); */
+				z-index: 99;
+				display: none;
+			}
+			p {
+				color: #929292;
+				font-family: PingFangSC-Regular;
+				font-size: 12px;
+				line-height: 12px;
+				padding-top: 8px;
+				text-align: center;
+			}
+			a {
+				text-decoration: none;
+				cursor: pointer;
+				color: #5995ef;
+				font-size: 12px;
+				line-height: 12px;
+			}
+			.icon {
+				height: 20px;
+				width: 20px;
+				display: none;
+			}
+			.version-info {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex: 1;
+				color: #929292;
+				font-family: PingFangSC-Regular;
+				font-size: 12px;
+				line-height: 12px;
+				padding-top: 8px;
+				text-align: center;
+			}
+      .code-area {
+        margin: auto;
+        text-align: center;
+        height: 300px;
+        width: 300px;
+        padding: 10px 10px;
+      }
+      .code-area img {
+        
+      }
+      .code-area span {
+        
+      }
+		</style>
+		<script type="text/javascript">
+			(function () {
+	            if (
+	                typeof WeixinJSBridge == "object" &&
+	                typeof WeixinJSBridge.invoke == "function"
+	            ) {
+	                handleFontSize();
+	            } else {
+	                if (document.addEventListener) {
+	                    document.addEventListener(
+	                        "WeixinJSBridgeReady",
+	                        handleFontSize,
+	                        false
+	                    );
+	                } else if (document.attachEvent) {
+	                    document.attachEvent("WeixinJSBridgeReady", handleFontSize);
+	                    document.attachEvent("onWeixinJSBridgeReady", handleFontSize);
+	                }
+	            }
+	
+	            function handleFontSize() {
+	                // 设置网页字体为默认大小
+	                WeixinJSBridge.invoke("setFontSizeCallback", {fontSize: 0});
+	                // 重写设置网页字体大小的事件
+	                WeixinJSBridge.on("menu:setfont", function () {
+	                    WeixinJSBridge.invoke("setFontSizeCallback", {fontSize: 0});
+	                });
+	            }
+	        })();
+		</script>
+	</head>
+	<body>
+		<div id="main_area">
+			<div class="code-area" id="hrefios">
+        <img src="../ios_download.png" alt=""/>
+        <span>iOS下载二维码</span>
+      </div>
+      <div class="code-area" id="hrefand">
+        <img src="../android_download.png" alt=""/>
+        <span>Android下载二维码</span>
+      </div>
+		</div>
+		<script type="text/javascript">
+			// var ios_link = "https://www.pgyer.com/dokAQviq"
+      // var and_link = "https://mcube.mpaas.accelerate.aliyuncs.com/ALIPUBA6B0198132052-ospoc/1.0.0.8/ANDROID/yusys_poc_china_release_1.0.0.8.apk"
+		</script>
+	</body>
+</html>
